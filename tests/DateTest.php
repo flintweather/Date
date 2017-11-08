@@ -23,9 +23,9 @@ require_once 'Date.php';
 require_once 'PHPUnit/Autoload.php';
 
 class myDate extends Date {
-    function myDate($date)
+    public function __construct($date)
     {
-        $this->Date($date);
+        parent::__construct($date);
     }
 }
 
@@ -35,9 +35,12 @@ class myDate extends Date {
  * @package Date
  * @author Marshall Roch <mroch@php.net>
  */
-class Date_Test extends PHPUnit_Framework_TestCase {
-
-    var $time;
+class Date_Test extends PHPUnit_Framework_TestCase
+{
+    /**
+     * @var Date
+     */
+    protected $time;
 
     function setUp()
     {
@@ -55,8 +58,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             date('Y-m-d H:i:s'),
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $time->year, $time->month, $time->day,
-                $time->hour, $time->minute, $time->second)
+                $time->getYear(), $time->getMonth(), $time->getDay(),
+                $time->getHour(), $time->getMinute(), $time->getSecond())
         );
     }
 
@@ -79,8 +82,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $temp->year, $temp->month, $temp->day,
-                $temp->hour, $temp->minute, $temp->second)
+                $temp->getYear(), $temp->getMonth(), $temp->getDay(),
+                $temp->getHour(), $temp->getMinute(), $temp->getSecond())
         );
     }
 
@@ -90,8 +93,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $temp->year, $temp->month, $temp->day,
-                $temp->hour, $temp->minute, $temp->second)
+                $temp->getYear(), $temp->getMonth(), $temp->getDay(),
+                $temp->getHour(), $temp->getMinute(), $temp->getSecond())
         );
     }
 
@@ -101,8 +104,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $temp->year, $temp->month, $temp->day,
-                $temp->hour, $temp->minute, $temp->second)
+                $temp->getYear(), $temp->getMonth(), $temp->getDay(),
+                $temp->getHour(), $temp->getMinute(), $temp->getSecond())
         );
     }
 
@@ -112,8 +115,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $temp->year, $temp->month, $temp->day,
-                $temp->hour, $temp->minute, $temp->second)
+                $temp->getYear(), $temp->getMonth(), $temp->getDay(),
+                $temp->getHour(), $temp->getMinute(), $temp->getSecond())
         );
     }
 
@@ -125,8 +128,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $temp->year, $temp->month, $temp->day,
-                $temp->hour, $temp->minute, $temp->second)
+                $temp->getYear(), $temp->getMonth(), $temp->getDay(),
+                $temp->getHour(), $temp->getMinute(), $temp->getSecond())
         );
     }
 
@@ -139,8 +142,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $temp->year, $temp->month, $temp->day,
-                $temp->hour, $temp->minute, $temp->second)
+                $temp->getYear(), $temp->getMonth(), $temp->getDay(),
+                $temp->getHour(), $temp->getMinute(), $temp->getSecond())
         );
     }
 
@@ -153,8 +156,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $temp->year, $temp->month, $temp->day,
-                $temp->hour, $temp->minute, $temp->second)
+                $temp->getYear(), $temp->getMonth(), $temp->getDay(),
+                $temp->getHour(), $temp->getMinute(), $temp->getSecond())
         );
     }
 
@@ -167,8 +170,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 15:03:24', // Preserves London local time (15.03)
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $temp->year, $temp->month, $temp->day,
-                $temp->hour, $temp->minute, $temp->second)
+                $temp->getYear(), $temp->getMonth(), $temp->getDay(),
+                $temp->getHour(), $temp->getMinute(), $temp->getSecond())
         );
     }
 
@@ -178,8 +181,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $this->time->year, $this->time->month, $this->time->day,
-                $this->time->hour, $this->time->minute, $this->time->second)
+                $this->time->getYear(), $this->time->getMonth(), $this->time->getDay(),
+                $this->time->getHour(), $this->time->getMinute(), $this->time->getSecond())
         );
     }
 
@@ -189,8 +192,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $this->time->year, $this->time->month, $this->time->day,
-                $this->time->hour, $this->time->minute, $this->time->second)
+                $this->time->getYear(), $this->time->getMonth(), $this->time->getDay(),
+                $this->time->getHour(), $this->time->getMinute(), $this->time->getSecond())
         );
     }
 
@@ -200,8 +203,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $this->time->year, $this->time->month, $this->time->day,
-                $this->time->hour, $this->time->minute, $this->time->second)
+                $this->time->getYear(), $this->time->getMonth(), $this->time->getDay(),
+                $this->time->getHour(), $this->time->getMinute(), $this->time->getSecond())
         );
     }
 
@@ -211,8 +214,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $this->time->year, $this->time->month, $this->time->day,
-                $this->time->hour, $this->time->minute, $this->time->second)
+                $this->time->getYear(), $this->time->getMonth(), $this->time->getDay(),
+                $this->time->getHour(), $this->time->getMinute(), $this->time->getSecond())
         );
     }
 
@@ -222,8 +225,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $this->time->year, $this->time->month, $this->time->day,
-                $this->time->hour, $this->time->minute, $this->time->second)
+                $this->time->getYear(), $this->time->getMonth(), $this->time->getDay(),
+                $this->time->getHour(), $this->time->getMinute(), $this->time->getSecond())
         );
     }
 
@@ -236,8 +239,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $this->time->year, $this->time->month, $this->time->day,
-                $this->time->hour, $this->time->minute, $this->time->second)
+                $this->time->getYear(), $this->time->getMonth(), $this->time->getDay(),
+                $this->time->getHour(), $this->time->getMinute(), $this->time->getSecond())
         );
     }
 
@@ -250,8 +253,8 @@ class Date_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
-                $this->time->year, $this->time->month, $this->time->day,
-                $this->time->hour, $this->time->minute, $this->time->second)
+                $this->time->getYear(), $this->time->getMonth(), $this->time->getDay(),
+                $this->time->getHour(), $this->time->getMinute(), $this->time->getSecond())
         );
     }
 
