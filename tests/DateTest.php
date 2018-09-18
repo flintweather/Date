@@ -124,7 +124,7 @@ class Date_Test extends PHPUnit_Framework_TestCase
     {
         $temp = new Date();
         $temp->setTZbyID("UTC");
-        $temp->setDate(strtotime("2003-10-04 14:03:24Z"));
+        $temp->setDate(strtotime("2003-10-04 14:03:24Z"), DATE_FORMAT_UNIXTIME);
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
@@ -137,7 +137,7 @@ class Date_Test extends PHPUnit_Framework_TestCase
     {
         $temp = new Date();
         $temp->setTZbyID("UTC-05:30");
-        $temp->setDate(strtotime("2003-10-04 14:03:24Z"));
+        $temp->setDate(strtotime("2003-10-04 14:03:24Z"), DATE_FORMAT_UNIXTIME);
         $temp->convertTZbyID("UTC");
         $this->assertEquals(
             '2003-10-04 14:03:24',
@@ -151,7 +151,7 @@ class Date_Test extends PHPUnit_Framework_TestCase
     {
         $temp = new Date();
         $temp->setTZbyID("America/Chicago");
-        $temp->setDate(strtotime("2003-10-04 14:03:24Z"));
+        $temp->setDate(strtotime("2003-10-04 14:03:24Z"), DATE_FORMAT_UNIXTIME);
         $temp->convertTZbyID("UTC");
         $this->assertEquals(
             '2003-10-04 14:03:24',
@@ -165,7 +165,7 @@ class Date_Test extends PHPUnit_Framework_TestCase
     {
         $temp = new Date();
         $temp->setTZbyID("Europe/London");
-        $temp->setDate(strtotime("2003-10-04 14:03:24Z")); // Summer time in London
+        $temp->setDate(strtotime("2003-10-04 14:03:24Z"), DATE_FORMAT_UNIXTIME); // Summer time in London
         $temp->setTZbyID("UTC");
         $this->assertEquals(
             '2003-10-04 15:03:24', // Preserves London local time (15.03)
@@ -221,7 +221,7 @@ class Date_Test extends PHPUnit_Framework_TestCase
 
     function testSetDateUnixtime()
     {
-        $this->time->setDate(strtotime("2003-10-04 14:03:24Z"));
+        $this->time->setDate(strtotime("2003-10-04 14:03:24Z"), DATE_FORMAT_UNIXTIME);
         $this->assertEquals(
             '2003-10-04 14:03:24',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d',
@@ -234,7 +234,7 @@ class Date_Test extends PHPUnit_Framework_TestCase
     {
         $hs_oldtz = $this->time->getTZID();
         $this->time->setTZbyID("UTC-05:30");
-        $this->time->setDate(strtotime("2003-10-04 14:03:24Z"));
+        $this->time->setDate(strtotime("2003-10-04 14:03:24Z"), DATE_FORMAT_UNIXTIME);
         $this->time->convertTZbyID($hs_oldtz);
         $this->assertEquals(
             '2003-10-04 14:03:24',
@@ -248,7 +248,7 @@ class Date_Test extends PHPUnit_Framework_TestCase
     {
         $hs_oldtz = $this->time->getTZID();
         $this->time->setTZbyID("America/Chicago");
-        $this->time->setDate(strtotime("2003-10-04 14:03:24Z"));
+        $this->time->setDate(strtotime("2003-10-04 14:03:24Z"), DATE_FORMAT_UNIXTIME);
         $this->time->convertTZbyID($hs_oldtz);
         $this->assertEquals(
             '2003-10-04 14:03:24',
