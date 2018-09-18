@@ -484,7 +484,7 @@ class Date
      * @access   public
      * @see      Date::setDate()
      */
-    public function __construct($date = null, $options = null)
+    function __construct($date = null, $options = null)
     {
 		$default = array(
 		    "pb_countleapseconds" => DATE_COUNT_LEAP_SECONDS,
@@ -529,7 +529,7 @@ class Date
      * @return   void
      * @access   public
      */
-    public function copy($date)
+    function copy($date)
     {
         $this->year       = $date->year;
         $this->month      = $date->month;
@@ -569,7 +569,7 @@ class Date
      * @access   public
      * @see      Date::copy()
      */
-    public function __clone()
+    function __clone()
     {
         // This line of code would be preferable, but will only
         // compile in PHP5:
@@ -597,7 +597,7 @@ class Date
      * @see      Date::setDate(), Date::isValidDate(), Date::isValidTime()
      * @since    Method available since Release 1.5.0
      */
-    public function isNull()
+    function isNull()
     {
         return is_null($this->year);
     }
@@ -632,7 +632,7 @@ class Date
      * @see      Date::setDate(), Date::isNull(), Date::isValidTime()
      * @since    Method available since Release 1.5.0
      */
-    public function isValidDate()
+    function isValidDate()
     {
         return
             !Date::isNull() &&
@@ -735,7 +735,7 @@ class Date
      * @see      Date::isNull(), Date::isValidDate(), Date::isValidTime(),
      *            Date::setFromTime()
      */
-    public function setDate($date,
+    function setDate($date,
                      $format = DATE_FORMAT_ISO,
                      $pb_repeatedhourdefault = false)
     {
@@ -849,7 +849,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function setNow($pb_setmicrotime = DATE_CAPTURE_MICROTIME_BY_DEFAULT)
+    function setNow($pb_setmicrotime = DATE_CAPTURE_MICROTIME_BY_DEFAULT)
     {
         $this->_setTZToDefault();
 
@@ -912,7 +912,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function round($pn_precision = DATE_PRECISION_DAY,
+    function round($pn_precision = DATE_PRECISION_DAY,
                    $pb_correctinvalidtime = DATE_CORRECTINVALIDTIME_DEFAULT)
     {
         if ($pn_precision <= DATE_PRECISION_DAY) {
@@ -1060,7 +1060,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function roundSeconds($pn_precision = 0,
+    function roundSeconds($pn_precision = 0,
                           $pb_correctinvalidtime = DATE_CORRECTINVALIDTIME_DEFAULT)
     {
         $this->round(DATE_PRECISION_SECOND + $pn_precision,
@@ -1119,7 +1119,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function trunc($pn_precision = DATE_PRECISION_DAY,
+    function trunc($pn_precision = DATE_PRECISION_DAY,
                    $pb_correctinvalidtime = DATE_CORRECTINVALIDTIME_DEFAULT)
     {
         if ($pn_precision <= DATE_PRECISION_DAY) {
@@ -1241,7 +1241,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function truncSeconds($pn_precision = 0,
+    function truncSeconds($pn_precision = 0,
                           $pb_correctinvalidtime = DATE_CORRECTINVALIDTIME_DEFAULT)
     {
         $this->trunc(DATE_PRECISION_SECOND + $pn_precision,
@@ -1271,7 +1271,7 @@ class Date
      *                       {@link DATE_FORMAT_ISO})
      * @access   public
      */
-    public function getDate($format = DATE_FORMAT_ISO)
+    function getDate($format = DATE_FORMAT_ISO)
     {
         switch ($format) {
         case DATE_FORMAT_ISO:
@@ -1328,7 +1328,7 @@ class Date
      * @see      Date::formatLikeStrftime(), Date::formatLikeDate(),
      *            Date::formatLikeSQL()
      */
-    public function format()
+    function format()
     {
         $ha_args = func_get_args();
         return call_user_func_array(array(&$this, DATE_FORMAT_METHOD),
@@ -1439,7 +1439,7 @@ class Date
      * @see      Date::format(), Date::formatLikeDate(), Date::formatLikeSQL()
      * @since    Method available since Release 1.5.1
      */
-    public function formatLikeStrftime($format)
+    function formatLikeStrftime($format)
     {
         $output = "";
 
@@ -1685,7 +1685,7 @@ class Date
      * @access   private
      * @since    Method available since Release 1.5.0
      */
-    public function _getOrdinalSuffix($pn_num, $pb_uppercase = true)
+    function _getOrdinalSuffix($pn_num, $pb_uppercase = true)
     {
         switch (($pn_numabs = abs($pn_num)) % 100) {
         case 11:
@@ -1740,7 +1740,7 @@ class Date
      * @access   private
      * @since    Method available since Release 1.5.0
      */
-    private function _spellNumber($pn_num,
+    function _spellNumber($pn_num,
                           $pb_ordinal = false,
                           $ps_capitalization = "SP",
                           $ps_locale = "en_GB")
@@ -1866,7 +1866,7 @@ class Date
      * @access   private
      * @since    Method available since Release 1.5.0
      */
-    private function _formatNumber($pn_num,
+    function _formatNumber($pn_num,
                            &$ps_format,
                            $pn_numofdigits,
                            $pb_nopad = false,
@@ -2184,7 +2184,7 @@ class Date
      * @see      Date::format(), Date::formatLikeStrftime(), Date::formatLikeDate()
      * @since    Method available since Release 1.5.0
      */
-    public function formatLikeSQL($ps_format, $ps_locale = "en_GB")
+    function formatLikeSQL($ps_format, $ps_locale = "en_GB")
     {
         if (!preg_match('/^("([^"\\\\]|\\\\\\\\|\\\\")*"|(D{1,3}|S?C+|' .
                         'HH(12|24)?|I[DW]|S?IY*|J|M[IM]|Q|SS(SSS)?|S?TZ[HS]|' .
@@ -3310,7 +3310,7 @@ class Date
      * @see      Date::format(), Date::formatLikeStrftime(), Date::formatLikeSQL()
      * @since    Method available since Release 1.5.0
      */
-    public function formatLikeDate($ps_format)
+    function formatLikeDate($ps_format)
     {
         $hs_formatlikesqlstr = "";
 
@@ -3464,7 +3464,7 @@ class Date
      * @access   public
      * @see      Date::getTime(), Date::setDate()
      */
-    public function setFromTime($pn_timestamp)
+    function setFromTime($pn_timestamp)
     {
         // Unix Time; N.B. Unix Time is defined relative to GMT,
         // so it needs to be adjusted for the current time zone;
@@ -3500,7 +3500,7 @@ class Date
      * @return   int        number of seconds since the Unix epoch
      * @access   public
      */
-    public function getTime()
+    function getTime()
     {
         if ($this->ob_invalidtime) {
             $ret = $this->_getErrorInvalidTime();
@@ -3533,7 +3533,7 @@ class Date
      *            Date::getTZShortName(), Date_TimeZone
      * @since    Method available since Release 1.5.0
      */
-    public function getTZID()
+    function getTZID()
     {
         return $this->tz->getID();
     }
@@ -3560,7 +3560,7 @@ class Date
      * @access   private
      * @since    Method available since Release 1.5.0
      */
-    private function _setTZToDefault()
+    function _setTZToDefault()
     {
         if (function_exists('version_compare') &&
             version_compare(phpversion(), "5.1.0", ">=") &&
@@ -3595,7 +3595,7 @@ class Date
      * @see      Date::setTZByID(), Date::convertTZ(),
      *            Date_TimeZone::Date_TimeZone(), Date_TimeZone
      */
-    public function setTZ($tz)
+    function setTZ($tz)
     {
         if (is_a($tz, 'Date_Timezone')) {
             $this->setTZByID($tz->getID());
@@ -3660,7 +3660,7 @@ class Date
      *            Date_TimeZone::isValidID(), Date_TimeZone::Date_TimeZone(),
      *            Date_TimeZone
      */
-    public function setTZByID($ps_id = null)
+    function setTZByID($ps_id = null)
     {
         // Whether the date is in Summer time forms the default for
         // the new time zone (if needed, which is very unlikely anyway).
@@ -3717,7 +3717,7 @@ class Date
      *            Date_TimeZone::getLongName()
      * @since    Method available since Release 1.5.0
      */
-    public function getTZLongName()
+    function getTZLongName()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -3745,7 +3745,7 @@ class Date
      *            Date_TimeZone::getShortName()
      * @since    Method available since Release 1.5.0
      */
-    public function getTZShortName()
+    function getTZShortName()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -3780,7 +3780,7 @@ class Date
      * @see      Date_TimeZone::getOffset()
      * @since    Method available since Release 1.5.0
      */
-    public function getTZOffset()
+    function getTZOffset()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -3805,7 +3805,7 @@ class Date
      * @access   public
      * @see      Date_TimeZone::hasDaylightTime(), Date_TimeZone::inDaylightTime()
      */
-    public function inDaylightTime($pb_repeatedhourdefault = false)
+    function inDaylightTime($pb_repeatedhourdefault = false)
     {
         if (!$this->tz->hasDaylightTime())
             return false;
@@ -3845,7 +3845,7 @@ class Date
      * @see      Date::convertTZByID(), Date::toUTC(),
      *            Date_TimeZone::Date_TimeZone(), Date_TimeZone
      */
-    public function convertTZ($tz)
+    function convertTZ($tz)
     {
         if ($this->getTZID() == $tz->getID())
             return;
@@ -3891,7 +3891,7 @@ class Date
      * @access   public
      * @see      Date::convertTZ(), Date::convertTZByID(), Date::toUTCbyOffset()
      */
-    public function toUTC()
+    function toUTC()
     {
         if ($this->getTZID() == "UTC")
             return;
@@ -3923,7 +3923,7 @@ class Date
      *            Date_TimeZone::isValidID(), Date_TimeZone::Date_TimeZone(),
      *            Date_TimeZone
      */
-    public function convertTZByID($ps_id)
+    function convertTZByID($ps_id)
     {
         if (!Date_TimeZone::isValidID($ps_id)) {
             return PEAR::raiseError("Invalid time zone ID '$ps_id'",
@@ -3955,7 +3955,7 @@ class Date
      * @access   private
      * @see      Date::toUTC(), Date::convertTZ(), Date::convertTZByID()
      */
-    public function toUTCbyOffset($ps_offset)
+    function toUTCbyOffset($ps_offset)
     {
         if ($ps_offset == "Z" ||
             preg_match('/^[+\-](00:?00|0{1,2})$/', $ps_offset)) {
@@ -3993,7 +3993,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function addYears($pn_years)
+    function addYears($pn_years)
     {
         list($hs_year, $hs_month, $hs_day) =
             explode(" ", Date_Calc::addYears($pn_years,
@@ -4026,7 +4026,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function addMonths($pn_months)
+    function addMonths($pn_months)
     {
         list($hs_year, $hs_month, $hs_day) =
             explode(" ", Date_Calc::addMonths($pn_months,
@@ -4058,7 +4058,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function addDays($pn_days)
+    function addDays($pn_days)
     {
         list($hs_year, $hs_month, $hs_day) =
             explode(" ", Date_Calc::addDays($pn_days,
@@ -4090,7 +4090,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function addHours($pn_hours)
+    function addHours($pn_hours)
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -4129,7 +4129,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function addMinutes($pn_minutes)
+    function addMinutes($pn_minutes)
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -4169,7 +4169,7 @@ class Date
      * @return   void
      * @access   public
      */
-    public function addSeconds($sec, $pb_countleap = null)
+    function addSeconds($sec, $pb_countleap = null)
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -4291,7 +4291,7 @@ class Date
      * @return   void
      * @access   public
      */
-    public function subtractSeconds($sec, $pb_countleap = null)
+    function subtractSeconds($sec, $pb_countleap = null)
     {
         if (is_null($pb_countleap))
             $pb_countleap = $this->ob_countleapseconds;
@@ -4361,7 +4361,7 @@ class Date
      * @access   public
      * @see      Date_Span
      */
-    public function addSpan($span)
+    function addSpan($span)
     {
         if (!is_a($span, 'Date_Span')) {
             return PEAR::raiseError("Invalid argument - not 'Date_Span' object");
@@ -4425,7 +4425,7 @@ class Date
      * @access   public
      * @see      Date_Span
      */
-    public function subtractSpan($span)
+    function subtractSpan($span)
     {
         if (!is_a($span, 'Date_Span')) {
             return PEAR::raiseError("Invalid argument - not 'Date_Span' object");
@@ -4501,7 +4501,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function dateDiff($po_date, $pb_ignoretime = false)
+    function dateDiff($po_date, $pb_ignoretime = false)
     {
         if ($pb_ignoretime || $this->ob_invalidtime) {
             return Date_Calc::dateToDays($this->day,
@@ -4654,7 +4654,7 @@ class Date
      * @return   boolean    true if this date is before $when
      * @access   public
      */
-    public function before($when)
+    function before($when)
     {
         $hn_compare = Date::compare($this, $when);
         if (PEAR::isError($hn_compare))
@@ -4679,7 +4679,7 @@ class Date
      * @return   boolean    true if this date is after $when
      * @access   public
      */
-    public function after($when)
+    function after($when)
     {
         $hn_compare = Date::compare($this, $when);
         if (PEAR::isError($hn_compare))
@@ -4704,7 +4704,7 @@ class Date
      * @return   boolean    true if this date is exactly equal to $when
      * @access   public
      */
-    public function equals($when)
+    function equals($when)
     {
         $hn_compare = Date::compare($this, $when);
         if (PEAR::isError($hn_compare))
@@ -4727,7 +4727,7 @@ class Date
      * @return   boolean    true if this date is in the future
      * @access   public
      */
-    public function isFuture()
+    function isFuture()
     {
         $now = new Date();
         return $this->after($now);
@@ -4743,7 +4743,7 @@ class Date
      * @return   boolean    true if this date is in the past
      * @access   public
      */
-    public function isPast()
+    function isPast()
     {
         $now = new Date();
         return $this->before($now);
@@ -4759,7 +4759,7 @@ class Date
      * @return   boolean    true if this year is a leap year
      * @access   public
      */
-    public function isLeapYear()
+    function isLeapYear()
     {
         return Date_Calc::isLeapYear($this->year);
     }
@@ -4790,7 +4790,7 @@ class Date
      * @see        Date::getDayOfYear()
      * @deprecated Method deprecated in Release 1.5.0
      */
-    public function getJulianDate()
+    function getJulianDate()
     {
         return Date_Calc::julianDate($this->day, $this->month, $this->year);
     }
@@ -4806,7 +4806,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function getDayOfYear()
+    function getDayOfYear()
     {
         return Date_Calc::dayOfYear($this->day, $this->month, $this->year);
     }
@@ -4821,7 +4821,7 @@ class Date
      * @return   int        the day of the week (0 = Sunday)
      * @access   public
      */
-    public function getDayOfWeek()
+    function getDayOfWeek()
     {
         return Date_Calc::dayOfWeek($this->day, $this->month, $this->year);
     }
@@ -4836,7 +4836,7 @@ class Date
      * @return   int        the week of the year
      * @access   public
      */
-    public function getWeekOfYear()
+    function getWeekOfYear()
     {
         return Date_Calc::weekOfYear($this->day, $this->month, $this->year);
     }
@@ -4851,7 +4851,7 @@ class Date
      * @return   int        the quarter of the year (1-4)
      * @access   public
      */
-    public function getQuarterOfYear()
+    function getQuarterOfYear()
     {
         return Date_Calc::quarterOfYear($this->day, $this->month, $this->year);
     }
@@ -4866,7 +4866,7 @@ class Date
      * @return   int        number of days in this month
      * @access   public
      */
-    public function getDaysInMonth()
+    function getDaysInMonth()
     {
         return Date_Calc::daysInMonth($this->month, $this->year);
     }
@@ -4881,7 +4881,7 @@ class Date
      * @return   int        number of weeks in this month
      * @access   public
      */
-    public function getWeeksInMonth()
+    function getWeeksInMonth()
     {
         return Date_Calc::weeksInMonth($this->month, $this->year);
     }
@@ -4899,7 +4899,7 @@ class Date
      * @return   string     name of this day
      * @access   public
      */
-    public function getDayName($abbr = false, $length = 3)
+    function getDayName($abbr = false, $length = 3)
     {
         if ($abbr) {
             return Date_Calc::getWeekdayAbbrname($this->day,
@@ -4925,7 +4925,7 @@ class Date
      * @return   string     name of this month
      * @access   public
      */
-    public function getMonthName($abbr = false)
+    function getMonthName($abbr = false)
     {
         if ($abbr) {
             return Date_Calc::getMonthAbbrname($this->month);
@@ -4946,7 +4946,7 @@ class Date
      * @return   object     Date object representing the next day
      * @access   public
      */
-    public function getNextDay()
+    function getNextDay()
     {
         $ret = new Date($this);
         $ret->addDays(1);
@@ -4965,7 +4965,7 @@ class Date
      * @return   object     Date object representing the previous day
      * @access   public
      */
-    public function getPrevDay()
+    function getPrevDay()
     {
         $ret = new Date($this);
         $ret->addDays(-1);
@@ -4984,7 +4984,7 @@ class Date
      * @return   object     Date object representing the next week-day
      * @access   public
      */
-    public function getNextWeekday()
+    function getNextWeekday()
     {
         $ret = new Date($this);
         list($hs_year, $hs_month, $hs_day) =
@@ -5008,7 +5008,7 @@ class Date
      * @return   object     Date object representing the previous week-day
      * @access   public
      */
-    public function getPrevWeekday()
+    function getPrevWeekday()
     {
         $ret = new Date($this);
         list($hs_year, $hs_month, $hs_day) =
@@ -5030,7 +5030,7 @@ class Date
      * @return   int        the year
      * @access   public
      */
-    public function getYear()
+    function getYear()
     {
         return $this->year;
     }
@@ -5045,7 +5045,7 @@ class Date
      * @return   int        the minute
      * @access   public
      */
-    public function getMonth()
+    function getMonth()
     {
         return $this->month;
     }
@@ -5060,7 +5060,7 @@ class Date
      * @return   int        the day
      * @access   public
      */
-    public function getDay()
+    function getDay()
     {
         return $this->day;
     }
@@ -5076,7 +5076,7 @@ class Date
      * @access   private
      * @since    Method available since Release 1.5.0
      */
-    public function _getErrorInvalidTime()
+    function _getErrorInvalidTime()
     {
         return PEAR::raiseError("Invalid time '" .
                                 sprintf("%02d.%02d.%02d",
@@ -5105,7 +5105,7 @@ class Date
      * @access   private
      * @since    Method available since Release 1.5.0
      */
-    private function _secondsInDayIsValid()
+    function _secondsInDayIsValid()
     {
         if ($this->ob_countleapseconds) {
             // Convert to UTC:
@@ -5175,7 +5175,7 @@ class Date
      *            DATE_VALIDATE_DATE_BY_DEFAULT, DATE_CORRECTINVALIDTIME_DEFAULT
      * @since    Method available since Release 1.5.0
      */
-    public function isValidTime()
+    function isValidTime()
     {
         return !$this->ob_invalidtime;
     }
@@ -5190,7 +5190,7 @@ class Date
      * @return   int        the hour
      * @access   public
      */
-    public function getHour()
+    function getHour()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -5208,7 +5208,7 @@ class Date
      * @return   int        the minute
      * @access   public
      */
-    public function getMinute()
+    function getMinute()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -5226,7 +5226,7 @@ class Date
      * @return   int        the second
      * @access   public
      */
-    public function getSecond()
+    function getSecond()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -5245,7 +5245,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function getSecondsPastMidnight()
+    function getSecondsPastMidnight()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -5286,7 +5286,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function getStandardYear()
+    function getStandardYear()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -5305,7 +5305,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function getStandardMonth()
+    function getStandardMonth()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -5324,7 +5324,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function getStandardDay()
+    function getStandardDay()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -5343,7 +5343,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function getStandardHour()
+    function getStandardHour()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -5362,7 +5362,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function getStandardMinute()
+    function getStandardMinute()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -5381,7 +5381,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function getStandardSecond()
+    function getStandardSecond()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -5401,7 +5401,7 @@ class Date
      * @access   public
      * @since    Method available since Release 1.5.0
      */
-    public function getStandardSecondsPastMidnight()
+    function getStandardSecondsPastMidnight()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -5423,7 +5423,7 @@ class Date
      * @access   protected
      * @since    Method available since Release 1.5.0
      */
-    public function getStandardPartSecond()
+    function getStandardPartSecond()
     {
         if ($this->ob_invalidtime)
             return $this->_getErrorInvalidTime();
@@ -5453,7 +5453,7 @@ class Date
      * @static
      * @since    Method available since Release 1.5.0
      */
-    private function _addOffset($pn_offset,
+    function _addOffset($pn_offset,
                         $pn_day,
                         $pn_month,
                         $pn_year,
@@ -5785,7 +5785,7 @@ class Date
      * @access   public
      * @see      Date::setDayMonthYear(), Date::setDateTime()
      */
-    public function setYear($y, $pb_validate = DATE_VALIDATE_DATE_BY_DEFAULT)
+    function setYear($y, $pb_validate = DATE_VALIDATE_DATE_BY_DEFAULT)
     {
         if ($pb_validate && !Date_Calc::isValidDate($this->day, $this->month, $y)) {
             return PEAR::raiseError("'" .
@@ -5825,7 +5825,7 @@ class Date
      * @access   public
      * @see      Date::setDayMonthYear(), Date::setDateTime()
      */
-    public function setMonth($m, $pb_validate = DATE_VALIDATE_DATE_BY_DEFAULT)
+    function setMonth($m, $pb_validate = DATE_VALIDATE_DATE_BY_DEFAULT)
     {
         if ($pb_validate && !Date_Calc::isValidDate($this->day, $m, $this->year)) {
             return PEAR::raiseError("'" .
@@ -5865,7 +5865,7 @@ class Date
      * @access   public
      * @see      Date::setDayMonthYear(), Date::setDateTime()
      */
-    public function setDay($d, $pb_validate = DATE_VALIDATE_DATE_BY_DEFAULT)
+    function setDay($d, $pb_validate = DATE_VALIDATE_DATE_BY_DEFAULT)
     {
         if ($pb_validate && !Date_Calc::isValidDate($d, $this->month, $this->year)) {
             return PEAR::raiseError("'" .
@@ -5907,7 +5907,7 @@ class Date
      * @see      Date::setDateTime()
      * @since    Method available since Release 1.5.0
      */
-    public function setDayMonthYear($d, $m, $y)
+    function setDayMonthYear($d, $m, $y)
     {
         if (!Date_Calc::isValidDate($d, $m, $y)) {
             return PEAR::raiseError("'" .
@@ -5946,7 +5946,7 @@ class Date
      * @access   public
      * @see      Date::setHourMinuteSecond(), Date::setDateTime()
      */
-    public function setHour($h, $pb_repeatedhourdefault = false)
+    function setHour($h, $pb_repeatedhourdefault = false)
     {
         if ($h > 23 || $h < 0) {
             return PEAR::raiseError("Invalid hour value '$h'");
@@ -5979,7 +5979,7 @@ class Date
      * @access   public
      * @see      Date::setHourMinuteSecond(), Date::setDateTime()
      */
-    public function setMinute($m, $pb_repeatedhourdefault = false)
+    function setMinute($m, $pb_repeatedhourdefault = false)
     {
         if ($m > 59 || $m < 0) {
             return PEAR::raiseError("Invalid minute value '$m'");
@@ -6012,7 +6012,7 @@ class Date
      * @access   public
      * @see      Date::setHourMinuteSecond(), Date::setDateTime()
      */
-    public function setSecond($s, $pb_repeatedhourdefault = false)
+    function setSecond($s, $pb_repeatedhourdefault = false)
     {
         if ($s > 60 || // Leap seconds possible
             $s < 0) {
@@ -6082,7 +6082,7 @@ class Date
      * @see      Date::setDateTime()
      * @since    Method available since Release 1.5.0
      */
-    public function setHourMinuteSecond($h, $m, $s, $pb_repeatedhourdefault = false)
+    function setHourMinuteSecond($h, $m, $s, $pb_repeatedhourdefault = false)
     {
         // Split second into integer and part-second:
         //
@@ -6135,7 +6135,7 @@ class Date
      * @see      Date::setDayMonthYear(), Date::setHourMinuteSecond()
      * @since    Method available since Release 1.5.0
      */
-    public function setDateTime($pn_day,
+    function setDateTime($pn_day,
                          $pn_month,
                          $pn_year,
                          $pn_hour,
