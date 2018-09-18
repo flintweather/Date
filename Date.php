@@ -2188,7 +2188,7 @@ class Date
     {
         if (!preg_match('/^("([^"\\\\]|\\\\\\\\|\\\\")*"|(D{1,3}|S?C+|' .
                         'HH(12|24)?|I[DW]|S?IY*|J|M[IM]|Q|SS(SSS)?|S?TZ[HS]|' .
-                        'TZM|U|W[W147]?|S?Y{1,3}([,.�\' ]?YYY)*)(SP(TH)?|' .
+                        'TZM|U|W[W147]?|S?Y{1,3}([,.·\' ]?YYY)*)(SP(TH)?|' .
                         'TH(SP)?)?|AD|A\.D\.|AM|A\.M\.|BCE?|B\.C\.(E\.)?|CE|' .
                         'C\.E\.|DAY|DY|F(F*|[1-9][0-9]*)|MON(TH)?|NP|PM|' .
                         'P\.M\.|RM|TZ[CINOR]|S?YEAR|[^A-Z0-9"])*$/i',
