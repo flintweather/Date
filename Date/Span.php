@@ -129,7 +129,7 @@ class Date_Span
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $day;
+    var $day;
 
     /**
      * The no of hours (0 to 23)
@@ -138,7 +138,7 @@ class Date_Span
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $hour;
+    var $hour;
 
     /**
      * The no of minutes (0 to 59)
@@ -147,7 +147,7 @@ class Date_Span
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $minute;
+    var $minute;
 
     /**
      * The no of seconds (0 to 59)
@@ -156,7 +156,7 @@ class Date_Span
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $second;
+    var $second;
 
 
     // }}}

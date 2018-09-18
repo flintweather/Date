@@ -85,7 +85,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $id;
+    var $id;
 
     /**
      * Offset, in milliseconds, of this timezone
@@ -94,7 +94,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $offset;
+    var $offset;
 
     /**
      * Short name of this time zone (e.g. "CST")
@@ -103,7 +103,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $shortname;
+    var $shortname;
 
     /**
      * DST short name of this timezone (e.g. 'BST')
@@ -112,7 +112,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $dstshortname;
+    var $dstshortname;
 
     /**
      * Long name of this time zone (e.g. "Central Standard Time")
@@ -123,7 +123,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $longname;
+    var $longname;
 
     /**
      * DST long name of this time zone (e.g. 'British Summer Time')
@@ -132,7 +132,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $dstlongname;
+    var $dstlongname;
 
     /**
      * Whether this time zone observes daylight savings time
@@ -141,7 +141,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $hasdst;
+    var $hasdst;
 
     /**
      * Additional offset of Summer time from the standard time of the
@@ -153,7 +153,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $on_summertimeoffset;
+    var $on_summertimeoffset;
 
     /**
      * Month no (1-12) in which Summer time starts (the clocks go forward)
@@ -162,7 +162,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $on_summertimestartmonth;
+    var $on_summertimestartmonth;
 
     /**
      * Definition of when Summer time starts in the specified month
@@ -179,7 +179,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $os_summertimestartday;
+    var $os_summertimestartday;
 
     /**
      * Time in milli-seconds relative to midnight UTC when
@@ -189,7 +189,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $on_summertimestarttime;
+    var $on_summertimestarttime;
 
     /**
      * Month no (1-12) in which Summer time ends (the clocks go back)
@@ -198,7 +198,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $on_summertimeendmonth;
+    var $on_summertimeendmonth;
 
     /**
      * Definition of when Summer time ends in the specified month
@@ -208,7 +208,7 @@ class Date_TimeZone
      * @see      Date_TimeZone::$os_summertimestartday
      * @since    Property available since Release 1.5.0
      */
-    private $os_summertimeendday;
+    var $os_summertimeendday;
 
     /**
      * Time in milli-seconds relative to midnight UTC when
@@ -218,7 +218,7 @@ class Date_TimeZone
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $on_summertimeendtime;
+    var $on_summertimeendtime;
 
 
     // }}}

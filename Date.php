@@ -282,7 +282,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $year;
+    var $year;
 
     /**
      * The month
@@ -291,7 +291,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $month;
+    var $month;
 
     /**
      * The day
@@ -300,7 +300,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $day;
+    var $day;
 
     /**
      * The hour
@@ -309,7 +309,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $hour;
+    var $hour;
 
     /**
      * The minute
@@ -318,7 +318,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $minute;
+    var $minute;
 
     /**
      * The second
@@ -327,7 +327,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $second;
+    var $second;
 
     /**
      * The parts of a second
@@ -336,7 +336,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.4.3
      */
-    private $partsecond;
+    var $partsecond;
 
     /**
      * The year in local standard time
@@ -345,7 +345,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $on_standardyear;
+    var $on_standardyear;
 
     /**
      * The month in local standard time
@@ -354,7 +354,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $on_standardmonth;
+    var $on_standardmonth;
 
     /**
      * The day in local standard time
@@ -363,7 +363,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $on_standardday;
+    var $on_standardday;
 
     /**
      * The hour in local standard time
@@ -372,7 +372,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $on_standardhour;
+    var $on_standardhour;
 
     /**
      * The minute in local standard time
@@ -381,7 +381,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $on_standardminute;
+    var $on_standardminute;
 
     /**
      * The second in local standard time
@@ -390,7 +390,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $on_standardsecond;
+    var $on_standardsecond;
 
     /**
      * The part-second in local standard time
@@ -399,7 +399,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $on_standardpartsecond;
+    var $on_standardpartsecond;
 
     /**
      * Whether the object should accept and count leap seconds
@@ -408,7 +408,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.5.0
      */
-    private $ob_countleapseconds;
+    var $ob_countleapseconds;
 
     /**
      * Whether the time is valid as a local time (an invalid time
@@ -420,7 +420,7 @@ class Date
      * @see      Date::isValidTime()
      * @since    Property available since Release 1.5.0
      */
-    private $ob_invalidtime = null;
+    var $ob_invalidtime = null;
 
     /**
      * Date_TimeZone object for this date
@@ -429,7 +429,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.0
      */
-    private $tz;
+    var $tz;
 
     /**
      * Defines the default weekday abbreviation length
@@ -442,7 +442,7 @@ class Date
      * @access   private
      * @since    Property available since Release 1.4.4
      */
-    private $getWeekdayAbbrnameLength = 3;
+    var $getWeekdayAbbrnameLength = 3;
 
 
     // }}}
@@ -465,17 +465,40 @@ class Date
      *
      * @param mixed $date                optional ISO 8601 date/time to initialize;
      *                                    or, a Unix time stamp
-     * @param bool  $pb_countleapseconds whether to count leap seconds
+     * @param mixed $options             optional with backwards compatibility;
+     *                                    accept bool whether to count leap seconds
      *                                    (defaults to
-     *                                    {@link DATE_COUNT_LEAP_SECONDS})
+     *                                    {@link DATE_COUNT_LEAP_SECONDS});
+     *                                    accept array options with default options:
+     *                                    'pb_countleapseconds' to count leap seconds
+     *                                    (defaults to
+     *                                    {@link DATE_COUNT_LEAP_SECONDS});
+     *                                    'format' (DATE_FORMAT_*) of the input date.
+     *                                    This option is not needed, except to force
+     *                                    the setting of the date from a Unix
+     *                                    time-stamp (for which use
+     *                                    {@link DATE_FORMAT_UNIXTIME}).
+     *                                    (Defaults to
+     *                                    {@link DATE_FORMAT_ISO}.)
      *
      * @access   public
      * @see      Date::setDate()
      */
-    public function __construct($date = null,
-                  $pb_countleapseconds = DATE_COUNT_LEAP_SECONDS)
+    public function __construct($date = null, $options = null)
     {
-        $this->ob_countleapseconds = $pb_countleapseconds;
+		$default = array(
+		    "pb_countleapseconds" => DATE_COUNT_LEAP_SECONDS,
+		    "format" => DATE_FORMAT_ISO
+		);
+		if (is_null($options)) {
+			$options = array();
+	    }
+		if (is_bool($options)) {
+			$options["pb_countleapseconds"] = $options;
+	    }
+	    $args = array_merge($default, $options);
+
+        $this->ob_countleapseconds = $args["pb_countleapseconds"];
 
         if (is_a($date, 'Date')) {
             $this->copy($date);
@@ -484,7 +507,7 @@ class Date
                 // 'setDate()' expects a time zone to be already set:
                 //
                 $this->_setTZToDefault();
-                $this->setDate($date);
+                $this->setDate($date, $args["format"]);
             } else {
                 $this->setNow();
             }
