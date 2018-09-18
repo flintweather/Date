@@ -2136,7 +2136,7 @@ class Date
      *   - <b>Y,YYY</b> - Year with thousands-separator in this position; five
      *                    possible separators
      *   - <b>Y.YYY</b>
-     *   - <b>Y�YYY</b> - N.B. space-dot (mid-dot, interpunct) is valid only in
+     *   - <b>Y·YYY</b> - N.B. space-dot (mid-dot, interpunct) is valid only in
      *                    ISO 8859-1 (so take care when using UTF-8 in
      *                    particular)
      *   - <b>Y'YYY</b>
